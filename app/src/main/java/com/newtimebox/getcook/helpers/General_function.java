@@ -14,7 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import com.newtimebox.robtutorial.R;
+import com.newtimebox.getcook.R;
 
 /**
  * Created by User on 29.01.2017.
@@ -156,7 +156,7 @@ public class General_function {
         final BitmapFactory.Options bitmapOptions=new BitmapFactory.Options();
         bitmapOptions.inDensity=1;
         bitmapOptions.inTargetDensity=1;
-        Bitmap bmp = BitmapFactory.decodeResource(context.getResources(),R.drawable.userloc_back,bitmapOptions);
+        Bitmap bmp = BitmapFactory.decodeResource(context.getResources(),ResourceId,bitmapOptions);
         return bmp;
     }
 
