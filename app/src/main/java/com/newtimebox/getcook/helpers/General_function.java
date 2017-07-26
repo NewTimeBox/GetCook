@@ -139,6 +139,7 @@ public class General_function {
     public static Bitmap ResizeBitmap(Bitmap bm, int newHeight, int newWidth)
     {
         //getResizedBitmap ile eyni
+        //k
         int width = bm.getWidth();
         int height = bm.getHeight();
         float scaleWidth = ((float) newWidth) / width;
