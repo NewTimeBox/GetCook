@@ -25,7 +25,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="90dp"
         android:layout_marginRight="90dp"
-        android:layout_marginTop="274dp"
+        android:layout_marginTop="8dp"
         android:background="#dedede"
         android:drawableLeft="@drawable/user"
         android:drawablePadding="10dp"
@@ -64,10 +64,11 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="186dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="90dp"
-        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+        tools:ignore="HardcodedText,RtlHardcoded,SpUsage"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        android:layout_marginBottom="108dp" />
 
     <Button
         android:id="@+id/loginButton"

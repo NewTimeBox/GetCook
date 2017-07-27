@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.newtimebox.getcook.R;
 import com.newtimebox.getcook.helpers.General_function;
@@ -19,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
         initialize();
 
         //ibo commit
+        ImageView backbig = (ImageView) findViewById(R.id.logBackgroudImage);
+        backbig.setImageBitmap(General_function.getBitmap(LoginActivity.this,R.drawable.backbig));
     }
 
     private void initialize() {
