@@ -10,6 +10,8 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.newtimebox.getcook.R;
 public class General_function {
 
     public Context CurrentContext;
+    public static Context StaticCurrentContext;
     public static MediaPlayer sound_player;
     public static int sound_player_src;
     public General_function(Context location){ this.CurrentContext = location;}
@@ -246,6 +249,20 @@ public class General_function {
         }
 
         return soundpool;
+    }
+
+
+
+    public static boolean isInternetConnected(Context context) {
+        StaticCurrentContext=context;
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public static boolean isInternetConnected() {
+        return isInternetConnected(StaticCurrentContext);
     }
 
     /*
