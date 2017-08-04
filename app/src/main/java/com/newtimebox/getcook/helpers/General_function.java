@@ -36,7 +36,7 @@ public class General_function {
     public static int sound_player_src;
     public General_function(Context location){ this.CurrentContext = location;}
     private Bundle extras;
-
+//https://android-developers.googleblog.com/2015/05/android-design-support-library.html
 
     public void Redirect(Class<?> target,Context location){
         //https://www.youtube.com/user/mybringback/playlists
@@ -62,6 +62,20 @@ public class General_function {
         }
 
         this.CurrentContext.startActivity(new_Activity_page);
+    }
+    public static void LaunchActivity(Class<?> target) {
+
+        LaunchActivity(target,null);
+    }
+    public static void LaunchActivity(Class<?> target,Bundle extras) {
+        //Redirect ile eyni seydi sadece staticdi
+
+        Intent new_Activity_page = new Intent(StaticCurrentContext,target);
+        if(extras != null){
+            new_Activity_page.putExtras(extras);
+        }
+
+        StaticCurrentContext.startActivity(new_Activity_page);
     }
 
 

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.newtimebox.getcook.R;
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         bLogin = (Button) findViewById(R.id.bLogin);
-
+        TextView tvReg = (TextView) findViewById(R.id.tvReg);
 
         General_function.setStaticContext(LoginActivity.this);
 
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
 
         mainLayout.setOnClickListener(this);
         bLogin.setOnClickListener(this);
-
+        tvReg.setOnClickListener(this);
         etPassword.setOnKeyListener(this);
 
     }
@@ -93,6 +94,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
                 break;
             case R.id.mainLayout:
 
+                break;
+            case R.id.tvReg:
+                General_function.LaunchActivity(RegisterActivity.class);
                 break;
         }
     }
