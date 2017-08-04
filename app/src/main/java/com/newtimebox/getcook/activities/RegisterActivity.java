@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     EditText etUsername,etPassword;
     Button bRegiser;
-    ConstraintLayout mainLayout;
+    LinearLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +36,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void initialize() {
         ScrollView backbig = (ScrollView) findViewById(R.id.mainScroll);
-        mainLayout = (ConstraintLayout) findViewById(R.id.mainLayout);
-        etUsername = (EditText) findViewById(R.id.etUsername);
-        etPassword = (EditText) findViewById(R.id.etPassword);
-        bRegiser= (Button) findViewById(R.id.bRegiser);
-        TextView tvLogin = (TextView) findViewById(R.id.tvLogin);
-
+        mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             backbig.setBackground(new BitmapDrawable(getResources(), General_function.getBitmap(RegisterActivity.this,R.drawable.registerback)));
         }else{
             backbig.setBackgroundResource(R.drawable.registerback);
         }
+
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        bRegiser= (Button) findViewById(R.id.bRegiser);
+        TextView tvLogin = (TextView) findViewById(R.id.tvLogin);
+
+
 
         mainLayout.setOnClickListener(this);
         bRegiser.setOnClickListener(this);
