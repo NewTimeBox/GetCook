@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
 //
 //            //getCurrentFocus().clearFocus();
 //        }
-        General_function.blurInput(view);
+        General_function.blurInput(view,LoginActivity.this);
 
         switch (view.getId()){
             case R.id.bLogin:

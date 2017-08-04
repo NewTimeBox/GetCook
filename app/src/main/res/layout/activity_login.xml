@@ -120,22 +120,22 @@
         app:layout_constraintVertical_bias="0.021"
         tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/bLogin"
-        android:layout_width="168dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
-        android:background="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="Login"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        tools:ignore="HardcodedText,UnknownIdInLayout"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        tools:ignore="HardcodedText,UnknownIdInLayout" />
 
     <TextView
         android:id="@+id/tvReg"
