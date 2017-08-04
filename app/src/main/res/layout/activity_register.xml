@@ -42,7 +42,7 @@
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/usernameTextBox"
+        android:id="@+id/etUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#dedede"
@@ -85,7 +85,7 @@
         tools:ignore="HardcodedText,SpUsage,TextFields" />
 
     <EditText
-        android:id="@+id/passwordTextBox"
+        android:id="@+id/etPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#dedede"
@@ -120,7 +120,7 @@
         android:textColor="@android:color/holo_red_dark"
         android:textSize="30sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/usernameTextBox"
+        app:layout_constraintBottom_toTopOf="@+id/etUsername"
         app:layout_constraintTop_toTopOf="@+id/regBackgroundImage"
         app:layout_constraintVertical_bias="0.574"
         tools:layout_editor_absoluteX="137dp"
