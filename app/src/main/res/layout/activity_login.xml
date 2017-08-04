@@ -11,8 +11,8 @@
 
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
+    android:layout_height="wrap_content"
+    android:id="@+id/mainLayout"
     tools:context="com.newtimebox.getcook.activities.LoginActivity"
 
     >
@@ -31,7 +31,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/name"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintVertical_bias="0.636"
+        android:contentDescription="" />
 
     <TextView
         android:id="@+id/name"
@@ -52,13 +53,12 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/logBackgroudImage"
         app:layout_constraintVertical_bias="0.486"
         tools:ignore="HardcodedText"
-        app:layout_constraintBottom_toTopOf="@+id/usernameTextBox" />
+        app:layout_constraintBottom_toTopOf="@+id/etUsername" />
 
     <EditText
-        android:id="@+id/usernameTextBox"
+        android:id="@+id/etUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -86,10 +86,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.317"
-        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+        tools:ignore="HardcodedText,RtlHardcoded,SpUsage"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        />
 
     <EditText
-        android:id="@+id/passwordTextBox"
+        android:id="@+id/etPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -112,12 +115,40 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername"
+        app:layout_constraintVertical_bias="0.021"
+        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:background="#dedede"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#1f242d"
+        android:textColorHint="#7f8c8d"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername"
         app:layout_constraintVertical_bias="0.021"
         tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/bLogin"
         android:layout_width="168dp"
         android:layout_height="48dp"
         android:layout_marginLeft="8dp"
@@ -128,13 +159,13 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
         tools:ignore="HardcodedText,UnknownIdInLayout"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
     <TextView
-        android:id="@+id/registerTap"
+        android:id="@+id/tvReg"
         android:layout_width="69dp"
         android:layout_height="26dp"
         android:layout_marginBottom="8dp"
@@ -150,7 +181,7 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/bLogin"
         app:layout_constraintVertical_bias="0.032"
         tools:ignore="HardcodedText" />
 

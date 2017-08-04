@@ -1,6 +1,7 @@
 package com.newtimebox.getcook.helpers;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,9 +11,14 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.newtimebox.getcook.R;
 
@@ -24,6 +30,7 @@ import com.newtimebox.getcook.R;
 
 public class General_function {
 
+    private static Context StaticCurrentContext;
     public Context CurrentContext;
     public static MediaPlayer sound_player;
     public static int sound_player_src;
@@ -246,6 +253,56 @@ public class General_function {
         }
 
         return soundpool;
+    }
+
+
+    public static void setStaticContext(Context context){
+        StaticCurrentContext=context;
+
+    }
+
+    public static boolean isInternetConnected(Context context) {
+        StaticCurrentContext=context;
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public static boolean isInternetConnected() {
+        return isInternetConnected(StaticCurrentContext);
+    }
+
+
+    public static void blurInput(View view,Context context){
+        //bu view verilecek ve onu blur edecek eger ki edittext deyilse
+        //yeni browser kimi basqa yere click edende bu edit text den keyboard silinmesi kimi
+        Activity activity = (Activity) context;
+        InputMethodManager im = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if((view instanceof EditText)==false){
+            View currentFocus = (EditText)  activity.getCurrentFocus();
+            if(im!=null){
+                if(currentFocus!=null){
+                    im.hideSoftInputFromWindow(currentFocus.getWindowToken(),0);
+                }
+            }
+
+            //  etUsername.setEnabled(false);
+            //currentFocus.clearFocus();
+
+            //getCurrentFocus().clearFocus();
+        }
+    }
+
+    public static void blurInput(View view){
+        blurInput(view,StaticCurrentContext);
+    }
+
+
+    public static void  setUpActivity(Context context){
+        Activity activity = (Activity) context;
+        StaticCurrentContext = context;
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     /*
