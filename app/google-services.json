@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "599216467394",
+    "firebase_url": "https://getcook-290f0.firebaseio.com",
+    "project_id": "getcook-290f0",
+    "storage_bucket": "getcook-290f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599216467394:android:3844a0deeb4c0883",
+        "android_client_info": {
+          "package_name": "com.newtimebox.getcook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599216467394-r00uscf27c7a24biiu3evpd51d703j6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newtimebox.getcook",
+            "certificate_hash": "439e4308af4708ad8c420e3ff92bf6ca238f1973"
+          }
+        },
+        {
+          "client_id": "599216467394-vsmfuelmvq5l8jt1vhv2acf4lvpprd1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK2rvT4gQ7XgrI7Ejx0exhKNWyWdVvx5U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599216467394-vsmfuelmvq5l8jt1vhv2acf4lvpprd1f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
