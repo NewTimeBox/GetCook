@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GetCook.iml" filepath="$PROJECT_DIR$/GetCook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GetCookUp.iml" filepath="$PROJECT_DIR$/GetCookUp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/volley/volley.iml" filepath="$PROJECT_DIR$/libraries/volley/volley.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/volley/volley.iml" filepath="$PROJECT_DIR$/libraries/volley/volley.iml" />
     </modules>
   </component>
