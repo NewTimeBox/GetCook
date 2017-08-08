@@ -1,6 +1,7 @@
 package com.newtimebox.getcook.helpers;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +16,9 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.newtimebox.getcook.R;
 
@@ -26,13 +30,13 @@ import com.newtimebox.getcook.R;
 
 public class General_function {
 
+    private static Context StaticCurrentContext;
     public Context CurrentContext;
-    public static Context StaticCurrentContext;
     public static MediaPlayer sound_player;
     public static int sound_player_src;
     public General_function(Context location){ this.CurrentContext = location;}
     private Bundle extras;
-
+//https://android-developers.googleblog.com/2015/05/android-design-support-library.html
 
     public void Redirect(Class<?> target,Context location){
         //https://www.youtube.com/user/mybringback/playlists
@@ -58,6 +62,20 @@ public class General_function {
         }
 
         this.CurrentContext.startActivity(new_Activity_page);
+    }
+    public static void LaunchActivity(Class<?> target) {
+
+        LaunchActivity(target,null);
+    }
+    public static void LaunchActivity(Class<?> target,Bundle extras) {
+        //Redirect ile eyni seydi sadece staticdi
+
+        Intent new_Activity_page = new Intent(StaticCurrentContext,target);
+        if(extras != null){
+            new_Activity_page.putExtras(extras);
+        }
+
+        StaticCurrentContext.startActivity(new_Activity_page);
     }
 
 
@@ -252,6 +270,10 @@ public class General_function {
     }
 
 
+    public static void setStaticContext(Context context){
+        StaticCurrentContext=context;
+
+    }
 
     public static boolean isInternetConnected(Context context) {
         StaticCurrentContext=context;
@@ -263,6 +285,38 @@ public class General_function {
 
     public static boolean isInternetConnected() {
         return isInternetConnected(StaticCurrentContext);
+    }
+
+
+    public static void blurInput(View view,Context context){
+        //bu view verilecek ve onu blur edecek eger ki edittext deyilse
+        //yeni browser kimi basqa yere click edende bu edit text den keyboard silinmesi kimi
+        Activity activity = (Activity) context;
+        InputMethodManager im = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if((view instanceof EditText)==false){
+            View currentFocus = (EditText)  activity.getCurrentFocus();
+            if(im!=null){
+                if(currentFocus!=null){
+                    im.hideSoftInputFromWindow(currentFocus.getWindowToken(),0);
+                }
+            }
+
+            //  etUsername.setEnabled(false);
+            //currentFocus.clearFocus();
+
+            //getCurrentFocus().clearFocus();
+        }
+    }
+
+    public static void blurInput(View view){
+        blurInput(view,StaticCurrentContext);
+    }
+
+
+    public static void  setUpActivity(Context context){
+        Activity activity = (Activity) context;
+        StaticCurrentContext = context;
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     /*
