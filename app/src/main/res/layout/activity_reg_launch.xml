@@ -71,7 +71,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/btn_google_dark_focus_mdpi"
-        android:drawablePadding="10dp"
+        android:drawablePadding="9dp"
         android:padding="10dp"
         android:text="Sign in with Google"
         android:textColor="@android:color/white"
