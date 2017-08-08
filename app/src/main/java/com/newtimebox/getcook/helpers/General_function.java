@@ -30,7 +30,7 @@ import com.newtimebox.getcook.R;
 
 public class General_function {
 
-    private static Context StaticCurrentContext;
+    public static Context StaticCurrentContext;
     public Context CurrentContext;
     public static MediaPlayer sound_player;
     public static int sound_player_src;

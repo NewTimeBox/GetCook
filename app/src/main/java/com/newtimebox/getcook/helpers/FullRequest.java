@@ -21,6 +21,7 @@ import java.util.Map;
 
 public class FullRequest extends StringRequest {
 
+    public static String primaryDomain = "http://newtimebox.com/subdomains/getcook/";
    // private static final String REGISTER_REQUEST_URL = "";
     private Map<String , String> params;
     private Context context;
