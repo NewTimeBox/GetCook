@@ -103,16 +103,20 @@ public class FirebaseAuthTest extends AppCompatActivity implements GoogleApiClie
                 signIn();
                 break;
             case R.id.bLogout:
-                FirebaseAuth.getInstance().signOut();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                        new ResultCallback<Status>() {
-                            @Override
-                            public void onResult(@NonNull Status status) {
-                                //do what you want
-                            }
-                        });
+                singOut();
                 break;
         }
+    }
+
+    private void singOut() {
+        FirebaseAuth.getInstance().signOut();
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        //do what you want
+                    }
+                });
     }
 
     private void signIn() {
