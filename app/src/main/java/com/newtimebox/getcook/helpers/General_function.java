@@ -2,6 +2,7 @@ package com.newtimebox.getcook.helpers;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,11 +32,17 @@ import com.newtimebox.getcook.R;
 public class General_function {
 
     public static Context StaticCurrentContext;
+    private static Activity CurrectActivity;
     public Context CurrentContext;
     public static MediaPlayer sound_player;
     public static int sound_player_src;
     public General_function(Context location){ this.CurrentContext = location;}
     private Bundle extras;
+
+
+//    Progress Bar ucun
+static ProgressDialog  pd;
+    //    Progress Bar ucun yuxari
 //https://android-developers.googleblog.com/2015/05/android-design-support-library.html
 
     public void Redirect(Class<?> target,Context location){
@@ -270,6 +277,13 @@ public class General_function {
     }
 
 
+
+
+    /*
+    * Yuxari Soundpool sound dur
+    * */
+
+
     public static void setStaticContext(Context context){
         StaticCurrentContext=context;
 
@@ -316,12 +330,42 @@ public class General_function {
     public static void  setUpActivity(Context context){
         Activity activity = (Activity) context;
         StaticCurrentContext = context;
+        CurrectActivity = activity;
         activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    /*
-    * Yuxari Soundpool sound dur
-    * */
+
+    //Progress below
+    static int progressGoing = 0;
+    public static void showProgress(String message){
+        showProgress(message,"");
+    }
+    public static void showProgress(String message,String mod){
+    //notouch yeni touch yox edirsen
+        pd = new ProgressDialog(General_function.StaticCurrentContext);
+        pd.setMessage(message);
+        pd.show();
+
+        if(mod.contentEquals("notouch")){
+            progressGoing=1;
+            pd.setCancelable(false);
+        }
+
+    }
+
+    public static void hideProgress(){
+        if(progressGoing==1){
+            progressGoing=0;
+            //CurrectActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        }
+        pd.hide();
+    }
+
+    //Progress above
+
+
+
 
 
 }

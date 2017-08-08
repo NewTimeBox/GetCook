@@ -7,16 +7,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.newtimebox.getcook.R;
 import com.newtimebox.getcook.helpers.FullRequest;
 import com.newtimebox.getcook.helpers.General_function;
@@ -61,7 +69,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
 
     private void signIn() {
         pd = new ProgressDialog(General_function.StaticCurrentContext);
-        pd.setMessage("loading");
+        pd.setMessage("Sign in");
         pd.show();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent,RC_SIGN_IN);
@@ -77,24 +85,12 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
+
                     // User is signed in
                     //user.unlink(user.getProviderId()); FirebaseAuth.getInstance().signOut();
                     Log.d("Firebase_test", "Email:"+user.getEmail()+
                             " | Name"+user.getDisplayName()+" | PhoneNumber"+user.getPhoneNumber()+"onAuthStateChanged:signed_in:" + user.getUid());
-                    FullRequest requester = new FullRequest();
-                    requester.setContext(General_function.StaticCurrentContext);
-                    requester.send_request(FullRequest.primaryDomain,new String[]{
 
-                            "email:"+user.getEmail(),
-                            "fullname:"+user.getDisplayName(),
-                            "firebaseId:"+ user.getUid(),
-                    },"POST",new ICallback(){
-                        @Override
-                        public void call(String ...params){
-                            Toast.makeText(General_function.StaticCurrentContext,params[0]+"",Toast.LENGTH_LONG).show();
-                            pd.hide();
-                        }
-                    });
                 } else {
                     // User is signed out
                     Log.d("Firebase_test", "onAuthStateChanged:signed_out");
@@ -118,6 +114,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.bLogin:
+                singOut();
                 signIn();
                 break;
         }
@@ -141,5 +138,66 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==RC_SIGN_IN){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+
+            if(result.isSuccess()){
+                GoogleSignInAccount account = result.getSignInAccount();
+                freebaseAuthWithGoogle(account);
+            }else{
+               // Log.d(TAG,"Google login failed");
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void freebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        pd.hide();
+                        if (task.isSuccessful()) {
+                            FullRequest requester = new FullRequest();
+                            requester.setContext(General_function.StaticCurrentContext);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            requester.send_request(FullRequest.primaryDomain,new String[]{
+
+                                    "email:"+user.getEmail(),
+                                    "fullname:"+user.getDisplayName(),
+                                    "firebaseId:"+ user.getUid(),
+                            },"POST",new ICallback(){
+                                @Override
+                                public void call(String ...params){
+                                    Toast.makeText(General_function.StaticCurrentContext,params[0]+"",Toast.LENGTH_LONG).show();
+
+                                }
+                            });
+                            // Sign in success, update UI with the signed-in user's information
+                           // Log.d(TAG, "signInWithCredential:success");
+                          //  FirebaseUser user = mAuth.getCurrentUser();
+                            //  updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                        Log.w("Error", "signInWithCredential:failure", task.getException());
+                            Toast.makeText(General_function.StaticCurrentContext, "Authentication failed."+task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                            TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
+                            tvTitle.setText(task.getException()+"");
+                            //  updateUI(null);
+                        }
+
+                        // ...
+                    }
+                });
     }
 }
