@@ -40,7 +40,7 @@ public class FirebaseAuthTest extends AppCompatActivity implements GoogleApiClie
     }
 
     private void setUpFirebase() {
-
+//
         mAuth = FirebaseAuth.getInstance();//mAuth.signOut();
         //auth fail olarsa mAuth.signOut(); sil sonra yerne qoy
         mAuthListener = new FirebaseAuth.AuthStateListener() {
