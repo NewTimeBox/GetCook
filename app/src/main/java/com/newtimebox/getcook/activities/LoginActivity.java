@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
        General_function.setUpActivity(LoginActivity.this);
-
+        General_function.LaunchActivity(FirebaseAuthTest.class);
         //ibo commit
        // ImageView backbig = (ImageView) findViewById(R.id.logBackgroudImage);
         initialize();
