@@ -159,7 +159,9 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void freebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    private void freebaseAuthWithGoogle(final GoogleSignInAccount acct) {
+        Log.i("acct","user_id"+acct.getId()+" getPhotoUrl: | "+acct.getPhotoUrl());
+        final String GoogleUserId = acct.getId();
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -175,6 +177,8 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
                                     "email:"+user.getEmail(),
                                     "fullname:"+user.getDisplayName(),
                                     "firebaseId:"+ user.getUid(),
+                                    "signWith:google",
+                                    "google_id:"+GoogleUserId,
                             },"POST",new ICallback(){
                                 @Override
                                 public void call(String ...params){

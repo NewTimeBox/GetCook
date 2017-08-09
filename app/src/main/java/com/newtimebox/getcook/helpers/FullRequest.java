@@ -20,8 +20,8 @@ import java.util.Map;
 
 
 public class FullRequest extends StringRequest {
-
-    public static String primaryDomain = "http://newtimebox.com/subdomains/getcook/";
+//http://newtimebox.com/subdomains/getcook/
+    public static String primaryDomain = "http://getcook.newtimebox.com/";
    // private static final String REGISTER_REQUEST_URL = "";
     private Map<String , String> params;
     private Context context;
