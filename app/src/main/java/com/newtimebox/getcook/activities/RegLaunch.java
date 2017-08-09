@@ -117,6 +117,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
                 singOut();
                 signIn();
                 break;
+
         }
     }
 
