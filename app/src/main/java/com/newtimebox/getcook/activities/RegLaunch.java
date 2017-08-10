@@ -116,6 +116,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
             case R.id.bLogin:
                 singOut();
                 signIn();
+                //
                 break;
 
         }
