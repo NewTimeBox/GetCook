@@ -181,6 +181,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
                                     "firebaseId:"+ user.getUid(),
                                     "signWith:google",
                                     "google_id:"+GoogleUserId,
+                                    "access_token:"+acct.getIdToken(),
                             },"POST",new ICallback(){
                                 @Override
                                 public void call(String ...params){
