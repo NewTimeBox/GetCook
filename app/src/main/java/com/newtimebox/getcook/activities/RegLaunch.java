@@ -174,7 +174,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
                             FullRequest requester = new FullRequest();
                             requester.setContext(General_function.StaticCurrentContext);
                             FirebaseUser user = mAuth.getCurrentUser();
-                            requester.send_request(FullRequest.primaryDomain,new String[]{
+                            requester.send_request(FullRequest.primaryDomain+"Actions/Process/reg",new String[]{
 
                                     "email:"+user.getEmail(),
                                     "fullname:"+user.getDisplayName(),
