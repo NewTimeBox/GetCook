@@ -51,27 +51,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_reg_launch);
         General_function.setUpActivity(RegLaunch.this);
         initialize();
-        SignInButton gPlus  = (SignInButton)findViewById(R.id.bRegiser);
-        gPlus.setSize(SignInButton.SIZE_WIDE);
-        setGooglePlusButtonText(gPlus,"Sign in with Google");
-        final TypeWriter typeWriter = (TypeWriter)findViewById(R.id.textView2);
-        typeWriter.animateText("Earn money by Cooking");
-        final Handler handler = new Handler();
-       final int delay = 6000;
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                handler.postDelayed(this,delay);
-                if(k==1){
-                    typeWriter.animateText("Get a meal without waiting");
-                    k=0;
-                }else{
-                    typeWriter.animateText("Earn money by Cooking");
-                    k=1;
-                }
 
-            }
-        },delay);
     }
     protected void setGooglePlusButtonText(SignInButton signInButton,
                                            String buttonText) {
@@ -91,7 +71,31 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
 
     private void initialize() {
         setUpFirebase();
+
+        SignInButton gPlus  = (SignInButton) findViewById(R.id.bReg);
+
+        gPlus.setSize(SignInButton.SIZE_WIDE);
+        setGooglePlusButtonText(gPlus,"Sign Up with Google");
+        final TypeWriter typeWriter = (TypeWriter)findViewById(R.id.textView2);
+        typeWriter.animateText("Earn money by Cooking");
+        final Handler handler = new Handler();
+        final int delay = 6000;
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this,delay);
+                if(k==1){
+                    typeWriter.animateText("Get a meal without waiting");
+                    k=0;
+                }else{
+                    typeWriter.animateText("Earn money by Cooking");
+                    k=1;
+                }
+
+            }
+        },delay);
         findViewById(R.id.bLogin).setOnClickListener(this);
+        gPlus.setOnClickListener(this);
     }
 
 
@@ -151,13 +155,14 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+        General_function.blurInput(view);
         switch (view.getId()){
             case R.id.bLogin:
                 singOut();
                 signIn();
                 break;
 
-            case R.id.bRegister:
+            case R.id.bReg:
                 singOut();
                 signIn();
                 break;

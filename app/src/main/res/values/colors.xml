@@ -5,4 +5,5 @@
     <color name="colorAccent">#d74578</color>
     <color name="RegisterColor">#0fd98b</color>
     <color name="LoginButtonColoer">#0fda8c</color>
+    <color name="bblack">#1d2129</color>
 </resources>
