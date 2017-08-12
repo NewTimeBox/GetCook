@@ -28,9 +28,6 @@ dependencies {
     //compile 'com.android.volley:volley:1.0.0'
     //compile 'com.mcxiaoke.volley:library:1.0.19'
     compile project(':libraries:volley')
-
-
-
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android.gms:play-services-maps:11.0.4'
@@ -43,8 +40,18 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:11.0.4'
     compile 'com.google.android.gms:play-services-auth:11.0.4'
     testCompile 'junit:junit:4.12'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
 }
-
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
 
 
 

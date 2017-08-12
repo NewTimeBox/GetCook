@@ -2,9 +2,11 @@ package com.newtimebox.getcook.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
@@ -28,6 +31,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.newtimebox.getcook.R;
 import com.newtimebox.getcook.helpers.FullRequest;
 import com.newtimebox.getcook.helpers.General_function;
+import com.newtimebox.getcook.helpers.TypeWriter;
 import com.newtimebox.getcook.interfaces.ICallback;
 
 public class RegLaunch extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -37,6 +41,7 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static int RC_SIGN_IN = 0;
+    private int k = 1;
 
     /*FireBase variables up*/
     ProgressDialog pd;
@@ -46,8 +51,42 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_reg_launch);
         General_function.setUpActivity(RegLaunch.this);
         initialize();
-    }
+        SignInButton gPlus  = (SignInButton)findViewById(R.id.bRegiser);
+        gPlus.setSize(SignInButton.SIZE_WIDE);
+        setGooglePlusButtonText(gPlus,"Sign in with Google");
+        final TypeWriter typeWriter = (TypeWriter)findViewById(R.id.textView2);
+        typeWriter.animateText("Earn money by Cooking");
+        final Handler handler = new Handler();
+       final int delay = 6000;
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this,delay);
+                if(k==1){
+                    typeWriter.animateText("Get a meal without waiting");
+                    k=0;
+                }else{
+                    typeWriter.animateText("Earn money by Cooking");
+                    k=1;
+                }
 
+            }
+        },delay);
+    }
+    protected void setGooglePlusButtonText(SignInButton signInButton,
+                                           String buttonText) {
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setTextSize(15);
+                tv.setTypeface(null, Typeface.NORMAL);
+                tv.setText(buttonText);
+                return;
+            }
+        }
+    }
 
 
     private void initialize() {
@@ -118,6 +157,10 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
                 signIn();
                 break;
 
+            case R.id.bRegister:
+                singOut();
+                signIn();
+                break;
         }
     }
 
@@ -196,8 +239,8 @@ public class RegLaunch extends AppCompatActivity implements View.OnClickListener
                         Log.w("Error", "signInWithCredential:failure", task.getException());
                             Toast.makeText(General_function.StaticCurrentContext, "Authentication failed."+task.getException(),
                                     Toast.LENGTH_SHORT).show();
-                            TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
-                            tvTitle.setText(task.getException()+"");
+//                            TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
+//                            tvTitle.setText(task.getException()+"");
                             //  updateUI(null);
                         }
 
